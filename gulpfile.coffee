@@ -32,9 +32,9 @@ paths =
   templates: ['src/**/*.jade']
   index: 'public/index.jade'
   dist: 'dist'
-  cssDist: 'dist/stylesheets'
-  jsDist: 'dist/javascripts'
-  fontsDist: 'dist/fonts'
+  cssDist: 'dist'
+  jsDist: 'dist'
+  fontsDist: 'dist'
 
 gulp.task 'lint', ->
   gulp.src(paths.scripts)
