@@ -1,0 +1,17 @@
+{
+  "name": "angular",
+  "version": "1.5.0",
+  "license": "MIT",
+  "main": "./angular.js",
+  "ignore": [],
+  "dependencies": {},
+  "_release": "1.5.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "v1.5.0",
+    "commit": "017a583b226a335740c5b50b3e9381a52d0bb260"
+  },
+  "_source": "git://192.168.99.100:6789/angular",
+  "_target": "^1.5.0",
+  "_originalSource": "angular"
+}

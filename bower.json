@@ -1,0 +1,32 @@
+{
+  "name": "score",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "cwperry <chrisp@containerstore.com>"
+  ],
+  "license": "MIT",
+  "moduleType": [],
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.0",
+    "angular-route": "^1.5.0",
+    "bootstrap": "^3.3.6",
+    "angular-animate": "^1.5.0",
+    "angular-touch": "^1.5.0",
+    "angular-bootstrap": "^1.2.4",
+    "moment": "^2.12.0",
+    "angular-ui-mask": "^1.8.1",
+    "sugar": "^1.4.1",
+    "font-awesome": "fontawesome#^4.5.0",
+    "ng-fastclick": "^1.0.2"
+  }
+}

@@ -1,0 +1,27 @@
+.helper
+  .row
+    .col-xs-3
+      h1 Event Time
+    .col-xs-3
+      input.time-entry.form-control(type='tel' ng-model="time", ui-mask="T9:T9", placeholder='00:00' ui-mask-placeholder='', ui-options='options')
+    .col-xs-6
+      .well
+        h1 Elapsed Time: {{elapsedTime}}
+  .row
+    .col-xs-12
+      h1 Shot Counter
+      .row
+        .col-xs-5
+          h4.pull-right Period:
+        .col-xs-7
+          .btn-group
+            label.btn.btn-default.btn-lg(ng-model='period' uib-btn-radio="'1st'") 1st
+            label.btn.btn-default.btn-lg.btn-lg(ng-model='period' uib-btn-radio="'2nd'") 2nd
+            label.btn.btn-default.btn-lg(ng-model='period' uib-btn-radio="'3rd'") 3rd
+            label.btn.btn-default.btn-lg(ng-model='period' uib-btn-radio="'OT'") OT
+  .row
+    .col-xs-6
+      shot-counter.home(side='Home', period='period')
+    .col-xs-6
+      shot-counter.away(side='Away', period='period')        
+    

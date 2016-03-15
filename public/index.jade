@@ -1,0 +1,14 @@
+doctype html
+html
+  head
+    title Score Keeper's Little Helper
+    base(href='/')
+    link(href="/favicon.ico", rel="shortcut icon", type="image/x-icon")
+
+    link(href="stylesheets/vendor.css", rel="stylesheet")
+    link(href="stylesheets/app.css", rel="stylesheet")
+  body(ng-app='app')
+    div(ng-view)
+    script(src="javascripts/vendor.min.js")
+    script(src="javascripts/app-templates.js")
+    script(src="javascripts/app.min.js")
