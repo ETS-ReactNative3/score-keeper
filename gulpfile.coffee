@@ -102,3 +102,7 @@ gulp.task 'serve', ['build', 'watch'], ->
     host: 'localhost'
     open: 'external'
   )
+
+gulp.task 'deploy', ->
+  gulp.src(paths.dist + '/**/*')
+    .pipe(gulpPlugins.ghPages())
