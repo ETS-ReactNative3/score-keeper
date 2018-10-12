@@ -1,10 +1,13 @@
 .helper
   .row
-    .col-xs-3
+    .col-xs-1.col-xs-offset-11
+      i.fa.fa-3x.fa-cog
+  .row
+    .col-xs-3.v-align
       h1 Event Time
-    .col-xs-3
+    .col-xs-3.v-align
       input.time-entry.form-control(type='tel' ng-model="time", ui-mask="T9:T9", placeholder='00:00' ui-mask-placeholder='', ui-options='options')
-    .col-xs-6
+    .col-xs-6.v-align
       .well
         h1 Elapsed Time: {{elapsedTime}}
   .row
@@ -23,5 +26,5 @@
     .col-xs-6
       shot-counter.home(side='Home', period='period')
     .col-xs-6
-      shot-counter.away(side='Away', period='period')        
-    
+      shot-counter.away(side='Away', period='period')
+

@@ -34,7 +34,7 @@ paths =
   dist: 'dist'
   cssDist: 'dist'
   jsDist: 'dist'
-  fontsDist: 'dist'
+  fontsDist: 'dist/fonts'
 
 gulp.task 'lint', ->
   gulp.src(paths.scripts)
