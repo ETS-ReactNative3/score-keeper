@@ -17,7 +17,7 @@ class ElapsedTime extends Component {
       periodLength: '15:00',
       eventTime: '00:00',
       elapsedTime: '00:00',
-      showPeriodLength: true  
+      showPeriodLength: false  
     };
   }
   
