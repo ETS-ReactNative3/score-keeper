@@ -15,7 +15,7 @@ class SavePercentage extends Component {
             <h3>Saves: {this.props.side.saves}</h3>
           </Col>
           <Col xs={4}>
-            <h3>SVVG: {this.props.side.savePercentage}%</h3>
+            <h3>SV%: {this.props.side.savePercentage}</h3>
           </Col>
         </Row> 
       </div>
