@@ -3,6 +3,8 @@ import Row from 'react-bootstrap/lib/Row';
 import Col from 'react-bootstrap/lib/Col';
 import Card from 'react-bootstrap/lib/Card';
 import Swipeable from 'react-swipeable'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 
 import './ShotCounter.css';
 
@@ -31,8 +33,11 @@ class GoalCounter extends Component {
     return (
       <div className={`.shot-counter ${this.props.side.toLowerCase()}`}>
         <Row>
-          <Col xs={12}>
-            <h3>{this.props.side} ({this.props.goals})</h3>
+          <Col xs={8} className="button-title">
+            <h4>Goals</h4>
+          </Col>
+          <Col xs={4} className="info">
+            <FontAwesomeIcon icon={faInfoCircle} onClick={this.props.showInstructions}/>
           </Col>
         </Row> 
         <Row>
@@ -44,13 +49,6 @@ class GoalCounter extends Component {
                 </Card>
               </div>
             </Swipeable>
-          </Col>
-        </Row> 
-        <Row>
-          <Col xs={12}>
-            <div className="instructions">
-              <div>Tap to add; Swipe left to remove goal</div>
-            </div>
           </Col>
         </Row> 
       </div>

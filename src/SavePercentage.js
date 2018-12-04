@@ -8,14 +8,14 @@ class SavePercentage extends Component {
     return (
       <div className={".save-percentage"}>
         <Row>
-          <Col xs={4}>
-            <h3>Shots: {this.props.side.goals + this.props.side.saves}</h3>
+          <Col sm={4}>
+            <h5>Shots: {this.props.side.goals + this.props.side.saves}</h5>
           </Col>
-          <Col xs={4}>
-            <h3>Saves: {this.props.side.saves}</h3>
+          <Col sm={4}>
+            <h5>Saves: {this.props.side.saves}</h5>
           </Col>
-          <Col xs={4}>
-            <h3>SV%: {this.props.side.savePercentage}</h3>
+          <Col sm={4}>
+            <h5>SV%: {this.props.side.savePercentage}</h5>
           </Col>
         </Row> 
       </div>

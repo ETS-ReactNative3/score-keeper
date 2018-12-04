@@ -3,6 +3,8 @@ import Row from 'react-bootstrap/lib/Row';
 import Col from 'react-bootstrap/lib/Col';
 import Card from 'react-bootstrap/lib/Card';
 import Swipeable from 'react-swipeable'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 
 import './ShotCounter.css';
 
@@ -36,8 +38,11 @@ class SaveCounter extends Component {
     return (
       <div className={`.shot-counter ${this.props.side.toLowerCase()}`}>
         <Row>
-          <Col xs={12}>
-            <h3>{this.props.side} ({this.props.saves})</h3>
+          <Col xs={8}>
+            <div className="button-title">Saves</div>
+          </Col>
+          <Col xs={4} className="info">
+            <FontAwesomeIcon icon={faInfoCircle}  onClick={this.props.showInstructions}/>
           </Col>
         </Row> 
         <Row>
@@ -45,18 +50,11 @@ class SaveCounter extends Component {
             <Swipeable onSwipedLeft={this.swipedLeft} trackMouse="true">
               <div className="tap-button" onClick={this.handleSaveClick}>
                 <Card body>
-                  <h3>{this.props.period}</h3>
+                  <h5>{this.props.period}</h5>
                   <h3>{this.state.saveCounts.get(this.props.period) || 0}</h3>
                 </Card>
               </div>
             </Swipeable>
-          </Col>
-        </Row> 
-        <Row>
-          <Col xs={12}>
-            <div className="instructions">
-              <div>Tap to add; Swipe left to remove save</div>
-            </div>
           </Col>
         </Row> 
       </div>

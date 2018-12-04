@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Container from 'react-bootstrap/lib/Container';
 import Row from 'react-bootstrap/lib/Row';
 import Col from 'react-bootstrap/lib/Col';
+import Alert from 'react-bootstrap/lib/Alert';
+import Button from 'react-bootstrap/lib/Button';
 import './App.css';
 import PeriodSelector from './PeriodSelector';
 import SaveCounter from './SaveCounter';
@@ -23,8 +25,8 @@ class App extends Component {
         goals: 0,
         saves: 0,
         savePercentage: 0
-      }
-
+      },
+      showInstructions: false
     };
   }
 
@@ -74,7 +76,15 @@ class App extends Component {
     var multiplicator = Math.pow(10, digits);
     n = parseFloat((n * multiplicator).toFixed(11));
     return (Math.round(n) / multiplicator).toFixed(2);
-}
+  }
+
+  hideInstructions = () => {
+    this.setState({showInstructions: false});  
+  }
+
+  showInstructions = () => {
+    this.setState({showInstructions: true});  
+  }
 
   render() {
     return (
@@ -82,29 +92,38 @@ class App extends Component {
         <Container fluid="true">
           <PeriodSelector period={this.state.period} onPeriodChange={this.handlePeriodChange}/>
           <Row>
-            <Col>
-              <h1 className="title">Goals</h1>
+            <Col xs={6} className="title">
+              <h4>Home</h4>
+            </Col>
+            <Col xs={6} className="title">
+              <h4>Away</h4>
             </Col> 
           </Row>
+          <Alert show={this.state.showInstructions} variant="info">
+          <p>
+            Tap to add - Swipe left to subtract.
+          </p>
+          <hr />
+          <div className="d-flex justify-content-end">
+            <Button onClick={this.hideInstructions} variant="success">
+              OK
+            </Button>
+          </div>  
+          </Alert>
           <Row>
             <Col xs={6}>
-              <GoalCounter side="Home" onGoalChange={this.handleHomeGoalChanged} goals={this.state.home.goals}/>
+              <GoalCounter side="Home" onGoalChange={this.handleHomeGoalChanged} goals={this.state.home.goals} showInstructions={this.showInstructions}/>
             </Col>
             <Col xs={6}>
-              <GoalCounter side="Away" onGoalChange={this.handleAwayGoalChanged} goals={this.state.away.goals}/>
+              <GoalCounter side="Away" onGoalChange={this.handleAwayGoalChanged} goals={this.state.away.goals} showInstructions={this.showInstructions}/>
             </Col>
           </Row>
           <Row>
-            <Col>
-              <h1 className="title">Saves</h1>
-            </Col> 
-          </Row>
-          <Row>
             <Col xs={6}>
-              <SaveCounter side="Home" period={this.state.period} saves={this.state.home.saves} onShotsChange={this.handleHomeSavesChanged} />
+              <SaveCounter side="Home" period={this.state.period} saves={this.state.home.saves} onShotsChange={this.handleHomeSavesChanged} showInstructions={this.showInstructions} />
             </Col>
             <Col xs={6}>
-              <SaveCounter side="Away" period={this.state.period} saves={this.state.away.saves} onShotsChange={this.handleAwaySavesChanged} />
+              <SaveCounter side="Away" period={this.state.period} saves={this.state.away.saves} onShotsChange={this.handleAwaySavesChanged} showInstructions={this.showInstructions} />
             </Col>
           </Row>
           <Row>
