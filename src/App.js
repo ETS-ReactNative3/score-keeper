@@ -4,11 +4,15 @@ import Row from 'react-bootstrap/lib/Row';
 import Col from 'react-bootstrap/lib/Col';
 import Alert from 'react-bootstrap/lib/Alert';
 import Button from 'react-bootstrap/lib/Button';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faQuestionCircle } from '@fortawesome/free-solid-svg-icons'
+
 import './App.css';
 import PeriodSelector from './PeriodSelector';
 import SaveCounter from './SaveCounter';
 import GoalCounter from './GoalCounter';
 import SavePercentage from './SavePercentage';
+import DonateButton from './DonateButton';
 
 class App extends Component {
 
@@ -83,47 +87,62 @@ class App extends Component {
   }
 
   showInstructions = () => {
-    this.setState({showInstructions: true});  
+    const tempShowInstructions = this.state.showInstructions
+    this.setState({showInstructions: !tempShowInstructions});  
   }
 
   render() {
     return (
       <div className="helper">
         <Container fluid="true">
-          <PeriodSelector period={this.state.period} onPeriodChange={this.handlePeriodChange}/>
+          <Row>
+            <Col xs={11}>
+              <PeriodSelector period={this.state.period} onPeriodChange={this.handlePeriodChange}/>
+            </Col>
+            <Col xs={1}>
+              <FontAwesomeIcon className="info" icon={faQuestionCircle} onClick={this.showInstructions}/>
+            </Col>
+          </Row>
           <Row>
             <Col xs={6} className="title">
               <h4>Home</h4>
             </Col>
             <Col xs={6} className="title">
               <h4>Away</h4>
-            </Col> 
+            </Col>
           </Row>
           <Alert show={this.state.showInstructions} variant="info">
-          <p>
-            Tap to add - Swipe left to subtract.
-          </p>
-          <hr />
-          <div className="d-flex justify-content-end">
-            <Button onClick={this.hideInstructions} variant="success">
-              OK
-            </Button>
-          </div>  
+            <p>
+              Tap button to add a goal against or a save - Swipe left to subtract.
+            </p>
+            <p>
+              Saves are tracked by period with the Period Selector at the top.
+            </p>
+            <hr />
+            <div className="donate">
+              <DonateButton/>
+            </div>
+            <hr />
+            <div className="d-flex justify-content-end">
+              <Button onClick={this.hideInstructions} variant="success">
+                OK
+              </Button>
+            </div>  
           </Alert>
           <Row>
             <Col xs={6}>
-              <GoalCounter side="Home" onGoalChange={this.handleHomeGoalChanged} goals={this.state.home.goals} showInstructions={this.showInstructions}/>
+              <GoalCounter side="Home" onGoalChange={this.handleHomeGoalChanged} goals={this.state.home.goals}/>
             </Col>
             <Col xs={6}>
-              <GoalCounter side="Away" onGoalChange={this.handleAwayGoalChanged} goals={this.state.away.goals} showInstructions={this.showInstructions}/>
+              <GoalCounter side="Away" onGoalChange={this.handleAwayGoalChanged} goals={this.state.away.goals}/>
             </Col>
           </Row>
           <Row>
             <Col xs={6}>
-              <SaveCounter side="Home" period={this.state.period} saves={this.state.home.saves} onShotsChange={this.handleHomeSavesChanged} showInstructions={this.showInstructions} />
+              <SaveCounter side="Home" period={this.state.period} saves={this.state.home.saves} onShotsChange={this.handleHomeSavesChanged}/>
             </Col>
             <Col xs={6}>
-              <SaveCounter side="Away" period={this.state.period} saves={this.state.away.saves} onShotsChange={this.handleAwaySavesChanged} showInstructions={this.showInstructions} />
+              <SaveCounter side="Away" period={this.state.period} saves={this.state.away.saves} onShotsChange={this.handleAwaySavesChanged}/>
             </Col>
           </Row>
           <Row>
