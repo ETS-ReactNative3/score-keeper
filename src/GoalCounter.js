@@ -2,18 +2,11 @@ import React, { Component } from 'react';
 import Row from 'react-bootstrap/lib/Row';
 import Col from 'react-bootstrap/lib/Col';
 import Card from 'react-bootstrap/lib/Card';
-import Swipeable from 'react-swipeable'
+import Swipeable from 'react-swipeable';
 
 import './ShotCounter.css';
 
 class GoalCounter extends Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      goals: 0
-    }
-  }
 
   handleGoalClick = () => {
     this.goalEvent(1);  
@@ -24,7 +17,7 @@ class GoalCounter extends Component {
   }
 
   goalEvent = (value) => {
-    this.props.onGoalChange(value);
+    this.props.onGoalChange(this.props.goalie, value);
   }
 
   render() {
@@ -40,7 +33,7 @@ class GoalCounter extends Component {
             <Swipeable onSwipedLeft={this.swipedLeft} trackMouse="true">
               <div className="tap-button" onClick={this.handleGoalClick}>
                 <Card body>
-                  <h3>{this.props.goals}</h3>
+                  <h3>{this.props.goalie.goals}</h3>
                 </Card>
               </div>
             </Swipeable>

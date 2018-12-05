@@ -13,6 +13,7 @@ import SaveCounter from './SaveCounter';
 import GoalCounter from './GoalCounter';
 import SavePercentage from './SavePercentage';
 import DonateButton from './DonateButton';
+import Goalie from './Goalie'
 
 class App extends Component {
 
@@ -20,16 +21,8 @@ class App extends Component {
     super(props);
     this.state = {
       period: '1st',
-      home: {
-        goals: 0,
-        saves: 0,
-        savePercentage: 0
-      },
-      away: {
-        goals: 0,
-        saves: 0,
-        savePercentage: 0
-      },
+      home: new Goalie(),
+      away: new Goalie(),
       showInstructions: false
     };
   }
@@ -38,48 +31,24 @@ class App extends Component {
     this.setState({period: period});
   }
 
-  handleHomeGoalChanged = (value) => {
-    const tempHome = this.state.home;
-    tempHome.goals = tempHome.goals + value;
-    tempHome.savePercentage = this.calculateSavePercentage(tempHome);
-    this.setState({home: tempHome});
+  handleHomeGoalChanged = (goalie, value) => {
+    goalie.goalChanged(value);
+    this.setState({home: goalie});
   }
 
-  handleHomeSavesChanged = (value) => {
-    const tempHome = this.state.home;
-    tempHome.saves = tempHome.saves + value;
-    tempHome.savePercentage = this.calculateSavePercentage(tempHome);
-    this.setState({home: tempHome});
+  handleHomeSavesChanged = (goalie, value) => {
+    goalie.savesChanged(value);
+    this.setState({home: goalie});
   }
 
-  handleAwayGoalChanged = (value) => {
-    const tempAway = this.state.away;
-    tempAway.goals = tempAway.goals + value;
-    tempAway.savePercentage = this.calculateSavePercentage(tempAway);
-    this.setState({away: tempAway});
+  handleAwayGoalChanged = (goalie, value) => {
+    goalie.goalChanged(value);
+    this.setState({away: goalie});
   }
 
-  handleAwaySavesChanged = (value) => {
-    const tempAway = this.state.away;
-    tempAway.saves = tempAway.saves + value;
-    tempAway.savePercentage = this.calculateSavePercentage(tempAway);
-    this.setState({away: tempAway});
-  }
-
-  calculateSavePercentage = (side) => {
-    const totalShots = side.goals + side.saves;
-    const percent = side.saves * 100 / totalShots
-    return this.roundTo(percent, 2);
-  }
-
-  roundTo = (n, digits) => {
-    if (digits === undefined) {
-        digits = 0;
-    }
-
-    var multiplicator = Math.pow(10, digits);
-    n = parseFloat((n * multiplicator).toFixed(11));
-    return (Math.round(n) / multiplicator).toFixed(2);
+  handleAwaySavesChanged = (goalie, value) => {
+    goalie.savesChanged(value);
+    this.setState({away: goalie});
   }
 
   hideInstructions = () => {
@@ -131,18 +100,18 @@ class App extends Component {
           </Alert>
           <Row>
             <Col xs={6}>
-              <GoalCounter side="Home" onGoalChange={this.handleHomeGoalChanged} goals={this.state.home.goals}/>
+              <GoalCounter side="Home" onGoalChange={this.handleHomeGoalChanged} goalie={this.state.home}/>
             </Col>
             <Col xs={6}>
-              <GoalCounter side="Away" onGoalChange={this.handleAwayGoalChanged} goals={this.state.away.goals}/>
+              <GoalCounter side="Away" onGoalChange={this.handleAwayGoalChanged} goalie={this.state.away}/>
             </Col>
           </Row>
           <Row>
             <Col xs={6}>
-              <SaveCounter side="Home" period={this.state.period} saves={this.state.home.saves} onShotsChange={this.handleHomeSavesChanged}/>
+              <SaveCounter side="Home" period={this.state.period} goalie={this.state.home} onShotsChange={this.handleHomeSavesChanged}/>
             </Col>
             <Col xs={6}>
-              <SaveCounter side="Away" period={this.state.period} saves={this.state.away.saves} onShotsChange={this.handleAwaySavesChanged}/>
+              <SaveCounter side="Away" period={this.state.period} goalie={this.state.away} onShotsChange={this.handleAwaySavesChanged}/>
             </Col>
           </Row>
           <Row>

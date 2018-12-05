@@ -29,7 +29,7 @@ class SaveCounter extends Component {
     tempSaveCounts.set(this.props.period, count + value);
 
     this.setState({shotCounts: tempSaveCounts })
-    this.props.onShotsChange(value)
+    this.props.onShotsChange(this.props.goalie, value)
   }
 
   render() {
