@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
-import Row from 'react-bootstrap/lib/Row';
-import Col from 'react-bootstrap/lib/Col';
-import Card from 'react-bootstrap/lib/Card';
-import Swipeable from 'react-swipeable';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Card from 'react-bootstrap/Card';
 
+import { Swipeable } from './Components';
 import './ShotCounter.css';
+
+
 
 class GoalCounter extends Component {
 
@@ -13,7 +15,9 @@ class GoalCounter extends Component {
   }
 
   swipedLeft = () => {
-    this.goalEvent(-1);
+    if (this.props.goalie.goals !== 0) {
+      this.goalEvent(-1);
+    }
   }
 
   goalEvent = (value) => {

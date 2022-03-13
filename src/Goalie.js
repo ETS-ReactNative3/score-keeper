@@ -21,7 +21,12 @@ class Goalie {
   calculateSavePercentage = () => {
     const totalShots = this.goals + this.saves;
     const percent = this.saves * 100 / totalShots;
-    this.savePercentage = this.roundTo(percent, 2);
+    console.log('goals, saves, totalshots, percent:', this.goals, this.saves, totalShots, percent);
+    if (totalShots === 0) {
+      this.savePercentage = 0;
+    } else {
+      this.savePercentage = this.roundTo(percent, 2);
+    }
   }
 
   roundTo = (n, digits) => {
