@@ -9,6 +9,7 @@
     "@fortawesome/react-fontawesome": "^0.1.17",
     "bootstrap": "^4.6.1",
     "gh-pages": "^3.2.3",
+    "immer": "^9.0.12",
     "moment": "^2.29.1",
     "react": "^17.0.2",
     "react-bootstrap": "^1.6.4",
